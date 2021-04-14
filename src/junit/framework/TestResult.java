@@ -6,6 +6,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
 
+
 /**
  * A <code>TestResult</code> collects the results of executing
  * a test case. It is an instance of the Collecting Parameter pattern.
@@ -23,6 +24,7 @@ public class TestResult extends Object {
 	// END android-changed
 	protected int fRunTests;
 	private boolean fStop;
+	private TestManager fTestManager;
 	
 	public TestResult() {
 		// BEGIN android-changed to Vector
@@ -30,6 +32,7 @@ public class TestResult extends Object {
 		fErrors= new Vector<TestFailure>();
 		fListeners= new Vector<TestListener>();
 		// END android-changed
+		fTestManager = new TestManager();
 		fRunTests= 0;
 		fStop= false;
 	}
@@ -112,6 +115,9 @@ public class TestResult extends Object {
 		startTest(test);
 		Protectable p= new Protectable() {
 			public void protect() throws Throwable {
+				if(fTestManager.isThisCaseOk(test.toString())){
+					return;
+				}
 				test.runBare();
 			}
 		};

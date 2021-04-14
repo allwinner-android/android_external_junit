@@ -21,7 +21,8 @@ src/junit/framework/TestCase.java \
 src/junit/framework/TestFailure.java \
 src/junit/framework/TestListener.java \
 src/junit/framework/TestResult.java \
-src/junit/framework/TestSuite.java
+src/junit/framework/TestSuite.java \
+src/junit/framework/TestManager.java
 
 # List of source to build into the android.test.runner library
 #
